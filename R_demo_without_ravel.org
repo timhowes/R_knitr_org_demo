@@ -1,0 +1,47 @@
+#+TITLE: Example of R with plain org-babel
+#+AUTHOR: Tim Howes
+#+INFOJS_OPT: view:info toc:t sdepth:2 tdepth:2
+#+STARTUP: showall
+#+OPTIONS: ^:{}
+#+PROPERTY: header-args :results output :exports both
+#+PROPERTY: header-args:R :results output graphics :exports both :session *R*
+
+
+* Example R code
+
+** Minimal example
+
+Show some minimal example code from https://yihui.name/knitr/demo/minimal/
+
+When using just org-babel without ox-ravel and knitr, only the final output of
+the code chunk is displayed.  You don't get to see the results of intermediate
+evaluations within the code block.
+
+#+BEGIN_SRC R  :file plot1.png
+
+  set.seed(1213)
+  x = cumsum(rnorm(100))
+  mean(x)
+  plot(x, type = 'l')
+
+#+END_SRC
+
+
+
+** ggplot2 examples
+
+Show some example plots from https://www.mailman.columbia.edu/sites/default/files/media/fdawg_ggplot2.html
+
+#+BEGIN_SRC R  :file plot2.png
+
+  library(ggplot2)
+
+  scatter <- ggplot(data=iris, aes(x = Sepal.Length, y = Sepal.Width)) 
+  scatter + geom_point(aes(color=Species, shape=Species)) +
+    xlab("Sepal Length") +  ylab("Sepal Width") +
+    ggtitle("Sepal Length-Width")
+
+  boxplot(Sepal.Length~Species,data=iris, 
+          xlab="Species", ylab="Sepal Length", main="Iris Boxplot")
+
+#+END_SRC
